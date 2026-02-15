@@ -1,0 +1,40 @@
+# Benchmark Indexes for Comparison
+#
+# These ETFs serve as comparison benchmarks for the Pittsburgh indexes.
+# Each benchmark includes display metadata used by the visualization layer.
+
+benchmarks:
+  - ticker: SPY
+    name: "S&P 500"
+    description: "Broad US large-cap benchmark"
+    category: "broad_market"
+
+  - ticker: VT
+    name: "Total World Stock"
+    description: "Global equities benchmark (Vanguard Total World Stock ETF)"
+    category: "broad_market"
+
+  - ticker: VTI
+    name: "Total US Market"
+    description: "Total US stock market including mid- and small-cap (Vanguard)"
+    category: "broad_market"
+
+  - ticker: IWM
+    name: "Russell 2000"
+    description: "Small-cap benchmark; many Pittsburgh companies are mid/small-cap"
+    category: "size_match"
+
+  - ticker: XLI
+    name: "Industrials Sector"
+    description: "Industrials sector SPDR; Pittsburgh is industrials-heavy"
+    category: "sector"
+
+  - ticker: XLF
+    name: "Financials Sector"
+    description: "Financials sector SPDR; PNC is a major Pittsburgh constituent"
+    category: "sector"
+
+  - ticker: XLB
+    name: "Materials Sector"
+    description: "Materials sector SPDR; PPG, Alcoa, US Steel are Pittsburgh materials"
+    category: "sector"

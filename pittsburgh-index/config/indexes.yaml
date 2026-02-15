@@ -1,0 +1,245 @@
+# Pittsburgh Stock Indexes - Constituent Definitions
+#
+# Two indexes are defined:
+#   1. Pittsburgh HQ Index: Companies headquartered in the Pittsburgh MSA
+#   2. Pittsburgh Operations Index: Companies with significant operations in the Pittsburgh MSA
+#
+# Inclusion criteria are documented per-index below.
+# The `added` and `removed` fields handle historical constituent changes:
+#   - `added`: Date the company entered the index (or the index base date)
+#   - `removed`: Date the company left the index (null = still active)
+#   - Companies are only included in calculations for the period [added, removed)
+
+pgh_hq_index:
+  name: "Pittsburgh HQ Index"
+  description: >
+    An index of the largest publicly traded companies headquartered in the
+    Pittsburgh Metropolitan Statistical Area (MSA). The Pittsburgh MSA includes
+    Allegheny, Westmoreland, Washington, Butler, Beaver, Fayette, and Armstrong
+    counties in southwestern Pennsylvania.
+  base_date: "2015-01-02"
+  base_value: 100
+  weighting: "market_cap"        # market_cap | equal
+  rebalance_frequency: "quarterly"
+
+  inclusion_criteria:
+    exchange: ["NYSE", "NASDAQ"]
+    geography: "Pittsburgh MSA"
+    requirement: "headquarters"
+    min_market_cap_millions: 500
+    min_avg_daily_volume: 100000
+    notes: >
+      Company must maintain its principal executive offices (as reported in SEC
+      filings) within the Pittsburgh MSA. If a company relocates its headquarters
+      outside the MSA, it is removed at the next quarterly rebalance.
+
+  constituents:
+    - ticker: PNC
+      name: "PNC Financial Services"
+      sector: "Financials"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: PPG
+      name: "PPG Industries"
+      sector: "Materials"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: ANSS
+      name: "Ansys"
+      sector: "Technology"
+      added: "2015-01-02"
+      removed: null
+      notes: "Headquartered in Canonsburg, PA (Pittsburgh MSA)"
+
+    - ticker: WAB
+      name: "Wabtec Corporation"
+      sector: "Industrials"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: HWM
+      name: "Howmet Aerospace"
+      sector: "Industrials"
+      added: "2020-04-01"
+      removed: null
+      notes: "Spun off from Arconic in April 2020"
+
+    - ticker: DKS
+      name: "Dick's Sporting Goods"
+      sector: "Consumer Discretionary"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: COHR
+      name: "Coherent Corp"
+      sector: "Technology"
+      added: "2015-01-02"
+      removed: null
+      notes: "Formerly II-VI Incorporated, renamed after merger with Coherent"
+
+    - ticker: WCC
+      name: "WESCO International"
+      sector: "Industrials"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: VTRS
+      name: "Viatris"
+      sector: "Healthcare"
+      added: "2020-11-16"
+      removed: null
+      notes: "Formed from Mylan and Upjohn merger, Nov 2020"
+
+    - ticker: X
+      name: "United States Steel"
+      sector: "Materials"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: AA
+      name: "Alcoa Corporation"
+      sector: "Materials"
+      added: "2016-11-01"
+      removed: null
+      notes: "Separated from Arconic in Nov 2016"
+
+    - ticker: DUOL
+      name: "Duolingo"
+      sector: "Technology"
+      added: "2021-07-28"
+      removed: null
+      notes: "IPO July 2021"
+
+    - ticker: AUR
+      name: "Aurora Innovation"
+      sector: "Technology"
+      added: "2021-11-04"
+      removed: null
+      notes: "Went public via SPAC Nov 2021"
+
+    - ticker: CNX
+      name: "CNX Resources"
+      sector: "Energy"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: FNB
+      name: "F.N.B. Corporation"
+      sector: "Financials"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: AEO
+      name: "American Eagle Outfitters"
+      sector: "Consumer Discretionary"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: KMT
+      name: "Kennametal"
+      sector: "Industrials"
+      added: "2015-01-02"
+      removed: null
+
+    - ticker: KOP
+      name: "Koppers Holdings"
+      sector: "Materials"
+      added: "2015-01-02"
+      removed: null
+
+pgh_ops_index:
+  name: "Pittsburgh Operations Index"
+  description: >
+    An index of the largest publicly traded companies with significant
+    operational presence in the Pittsburgh MSA, regardless of where they are
+    headquartered. This index is a superset of the HQ Index — all HQ Index
+    constituents are automatically included.
+  base_date: "2015-01-02"
+  base_value: 100
+  weighting: "market_cap"        # market_cap | equal
+  rebalance_frequency: "quarterly"
+
+  inclusion_criteria:
+    exchange: ["NYSE", "NASDAQ"]
+    geography: "Pittsburgh MSA"
+    requirement: "significant_operations"
+    min_market_cap_millions: 500
+    min_avg_daily_volume: 100000
+    min_employees_in_msa: 500
+    notes: >
+      A company qualifies for the Operations Index if it meets at least one of
+      the following criteria:
+        (a) Maintains its principal executive offices in the Pittsburgh MSA
+            (i.e., qualifies for the HQ Index), OR
+        (b) Operates a major office, R&D center, engineering hub, or regional
+            headquarters in the Pittsburgh MSA with at least 500 employees, OR
+        (c) Operates a major manufacturing plant, distribution center, or
+            production facility in the Pittsburgh MSA with at least 500
+            employees.
+      Employee counts are based on publicly available information, press
+      releases, and local reporting. Companies are reviewed at each quarterly
+      rebalance.
+
+  # All HQ Index constituents are included automatically.
+  # The `include_hq_index` flag avoids duplicating the full HQ list here.
+  include_hq_index: true
+
+  # Additional constituents beyond the HQ Index:
+  constituents:
+    - ticker: GOOGL
+      name: "Alphabet (Google)"
+      sector: "Technology"
+      added: "2015-01-02"
+      removed: null
+      notes: "Major R&D office in Bakery Square; robotics and AI research"
+
+    - ticker: UBER
+      name: "Uber Technologies"
+      sector: "Technology"
+      added: "2019-05-10"
+      removed: null
+      notes: "Engineering office; autonomous vehicle research legacy (IPO May 2019)"
+
+    - ticker: AMZN
+      name: "Amazon"
+      sector: "Consumer Discretionary"
+      added: "2015-01-02"
+      removed: null
+      notes: "Regional offices, AWS presence, distribution facilities"
+
+    - ticker: MSFT
+      name: "Microsoft"
+      sector: "Technology"
+      added: "2015-01-02"
+      removed: null
+      notes: "Regional office in Pittsburgh"
+
+    - ticker: RTX
+      name: "RTX Corporation"
+      sector: "Industrials"
+      added: "2015-01-02"
+      removed: null
+      notes: "Manufacturing facilities in Pittsburgh area"
+
+    - ticker: ETN
+      name: "Eaton Corporation"
+      sector: "Industrials"
+      added: "2015-01-02"
+      removed: null
+      notes: "Pittsburgh-area operations and manufacturing"
+
+    - ticker: BKNG
+      name: "Booking Holdings"
+      sector: "Consumer Discretionary"
+      added: "2015-01-02"
+      removed: null
+      notes: "Pittsburgh engineering office"
+
+    - ticker: SHW
+      name: "Sherwin-Williams"
+      sector: "Materials"
+      added: "2015-01-02"
+      removed: null
+      notes: "Coatings operations in Pittsburgh area"

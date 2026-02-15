@@ -1,0 +1,74 @@
+# Branding and Visual Style Configuration
+#
+# All visual styling for generated charts is controlled here.
+# Changing colors, fonts, or layout requires NO code changes — only this file.
+#
+# NOTE: Brand guidelines are TBD. These are placeholder defaults that can be
+# updated once brand guidelines are finalized.
+
+branding:
+  title_prefix: "Pittsburgh Stock Index"
+
+  fonts:
+    family: "sans-serif"
+    # Override with a specific font when brand guidelines are set:
+    # family: "Inter"
+    title_size: 16
+    label_size: 12
+    tick_size: 10
+    legend_size: 10
+
+  colors:
+    # Index series colors
+    pgh_hq_index: "#FFC425"       # Pittsburgh gold
+    pgh_ops_index: "#000000"      # Pittsburgh black
+
+    # Benchmark colors (mapped by ticker)
+    benchmarks:
+      SPY: "#1f77b4"
+      VT: "#ff7f0e"
+      VTI: "#2ca02c"
+      IWM: "#d62728"
+      XLI: "#9467bd"
+      XLF: "#8c564b"
+      XLB: "#e377c2"
+
+    # Chart element colors
+    background: "#FFFFFF"
+    plot_background: "#FAFAFA"
+    grid: "#E0E0E0"
+    text: "#333333"
+
+  line_styles:
+    pgh_hq_index:
+      linewidth: 2.5
+      linestyle: "-"
+      alpha: 1.0
+    pgh_ops_index:
+      linewidth: 2.5
+      linestyle: "-"
+      alpha: 1.0
+    benchmarks:
+      linewidth: 1.5
+      linestyle: "--"
+      alpha: 0.7
+
+  chart:
+    figure_width: 12
+    figure_height: 7
+    dpi: 150
+    format: "png"                 # png | svg | both
+    legend_location: "upper left"
+    date_format: "%b %Y"
+    grid_alpha: 0.3
+
+  watermark:
+    text: null                    # Set to a string to enable watermark
+    alpha: 0.15
+    fontsize: 36
+    rotation: 30
+
+  logo:
+    path: null                    # Path to logo image, null to disable
+    position: "lower right"
+    size: 0.08                    # As fraction of figure width

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cached data (regenerable — don't commit large data files)
+pittsburgh-index/data/raw/*.parquet
+pittsburgh-index/data/processed/*.parquet
+pittsburgh-index/data/inflation/*.parquet
+
+# Generated charts (regenerable)
+pittsburgh-index/output/charts/*.png
+pittsburgh-index/output/charts/*.svg
+
+# Environment variables
+.env
+.env.local
+
+# Jupyter
+.ipynb_checkpoints/

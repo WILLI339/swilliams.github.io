@@ -1,0 +1,53 @@
+# General Settings
+#
+# Controls data pipeline behavior, cache locations, and defaults.
+
+data:
+  cache_dir: "data/raw"
+  processed_dir: "data/processed"
+  inflation_dir: "data/inflation"
+  output_dir: "output/charts"
+
+  # Maximum retries for failed API requests
+  max_retries: 3
+  retry_backoff_seconds: 2
+
+  # Warn if cached data is older than this many days
+  stale_warning_days: 7
+
+index:
+  # Default base date for all indexes (can be overridden per-index in indexes.yaml)
+  default_base_date: "2015-01-02"
+  default_base_value: 100
+
+inflation:
+  # FRED series ID for CPI-U (Consumer Price Index for All Urban Consumers)
+  cpi_series: "CPIAUCSL"
+  # FRED API key — set via FRED_API_KEY environment variable
+  # Get a free key at: https://fred.stlouisfed.org/docs/api/api_key.html
+
+charts:
+  # Which charts to generate by default
+  default_charts:
+    - "hq_vs_benchmarks"
+    - "ops_vs_benchmarks"
+    - "hq_vs_ops"
+    - "total_return_comparison"
+    - "inflation_adjusted"
+    - "rolling_returns"
+    - "drawdowns"
+    - "sector_breakdown"
+    - "constituent_weights"
+
+  # Time periods to generate charts for (in addition to full history)
+  periods:
+    - label: "1 Year"
+      years: 1
+    - label: "3 Years"
+      years: 3
+    - label: "5 Years"
+      years: 5
+    - label: "10 Years"
+      years: 10
+    - label: "All Time"
+      years: null
