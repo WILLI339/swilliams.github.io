@@ -43,9 +43,9 @@ jobs:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           if [ "${{ inputs.inflation }}" = "true" ]; then
-            python -m src.cli run --inflation -v
+            python -m src.cli -v run --inflation
           else
-            python -m src.cli run -v
+            python -m src.cli -v run
           fi
 
       - name: Upload charts
